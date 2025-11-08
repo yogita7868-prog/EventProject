@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - EventElegance</title>
+    <link rel="icon" href="images/favicon-32x32.png" type="favicon">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        
+        :root {
+            --primary: #292164;
+            --accent: #00B894;
+            --background: rgb(225, 220, 220);
+            --text: #2D3436;
+        }
+
+       
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        
+        .header {
+            background: var(--primary);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(108,92,231,0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        /* Search */
+        .search-bar {
+            margin: 100px auto 2rem;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 2rem;
+            border: 2px solid var(--accent);
+            border-radius: 30px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(0,184,148,0.2);
+        }
+
+        
+        .services-container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            padding: 0 1rem;
+        }
+
+        
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-image {
+            height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.05);
+        }
+
+        
+        .footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+        }
+
+        /*Animations*/
+       
+        .animate {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        .hidden {
+            display: none;
+          }
+          blockquote {
+            font-style: italic;
+            font-weight: 500;
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
+            margin: 1rem 0;
+          }
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+            
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+          
+        .card:hover {
+            transform: translateY(-10px) scale(1.02); 
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+          }
+
+        .card-image {
+            height: 350px;
+            border-radius: 15px 15px 0 0;
+            overflow: hidden;
+            margin: -2rem -2rem 1rem -2rem;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        /*Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: var(--primary);
+                flex-direction: column;
+                padding: 1rem;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+                font-size: 1.5rem;
+            }
+
+            .service-card {
+                grid-template-columns: 1fr;
+            }
+
+            .service-image {
+                height: 200px;
+            }
+        
+            
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <a href="#" class="logo">EventElegance</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="calculator.html">Calculator</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="hamburger">☰</div>
+        </nav>
+    </header>
+
+    <div class="search-bar">
+        <input type="text" class="search-input" placeholder="🔍 Search services..." id="searchInput">
+    </div>
+
+    <main class="services-container">
+        <section class="services-container">
+            <!-- Wedding Planning -->
+            <div class="service-card animate">
+                <div class="service-image">
+                    <img src="images/wedding2.jpeg" alt="Wedding planning service">
+                </div>
+                <div>
+                    <h2 class="searchable">Full Wedding Planning</h2>
+                    <p>Complete coordination from venue selection to honeymoon planning</p>
+                    <ul>
+                        <li>Venue coordination</li>
+                        <li>Vendor management</li>
+                        <li>Day-of coordination</li>
+                        <li>Budget planning</li>
+                        <li>Guest management</li>
+                    </ul>
+                </div>
+            </div>
+        
+            <!-- Corporate Events -->
+            <div class="service-card animate">
+                <div class="service-image">
+                    <img src="images/corporate2.jpeg" alt="Corporate event planning">
+                </div>
+                <div>
+                    <h2 class="searchable">Corporate Events</h2>
+                    <p>Professional event management for business needs</p>
+                    <ul>
+                        <li>Conference planning</li>
+                        <li>Product launches</li>
+                        <li>Team building activities</li>
+                        <li>Trade shows</li>
+                        <li>Award ceremonies</li>
+                    </ul>
+                </div>
+            </div>
+        
+            <!-- Social Gatherings -->
+            <div class="service-card animate">
+                <div class="service-image">
+                    <img src="images/bday.jpeg" alt="Social gathering planning">
+                </div>
+                <div>
+                    <h2 class="searchable">Social Gatherings</h2>
+                    <p>Memorable personal celebrations</p>
+                    <ul>
+                        <li>Birthday parties</li>
+                        <li>Anniversary celebrations</li>
+                        <li>Themed events</li>
+                        <li>Graduation parties</li>
+                        <li>Family reunions</li>
+                    </ul>
+                </div>
+            </div>
+        
+            <!-- Charity Galas (New) -->
+            <div class="service-card animate">
+                <div class="service-image">
+                    <img src="images/gala.jpeg" alt="Charity gala planning">
+                </div>
+                <div>
+                    <h2 class="searchable">Charity Galas</h2>
+                    <p>Elegant fundraising events with purpose</p>
+                    <ul>
+                        <li>Donor engagement strategies</li>
+                        <li>Silent auction coordination</li>
+                        <li>VIP guest management</li>
+                        <li>Sponsorship activation</li>
+                        <li>Media coverage coordination</li>
+                    </ul>
+                </div>
+            </div>
+        
+            <!-- Music Festivals (New) -->
+            <div class="service-card animate">
+                <div class="service-image">
+                    <img src="images/music2.jpeg" alt="Music festival planning">
+                </div>
+                <div>
+                    <h2 class="searchable">Music Festivals</h2>
+                    <p>Large-scale music event production</p>
+                    <ul>
+                        <li>Artist booking and management</li>
+                        <li>Stage and sound design</li>
+                        <li>Vendor and food court coordination</li>
+                        <li>Crowd control and security</li>
+                        <li>Sponsorship fulfillment</li>
+                    </ul>
+                </div>
+            </div>
+        
+            <!-- Destination Events (New) -->
+            <div class="service-card animate">
+                <div class="service-image">
+                    <img src="images/destination.jpeg" alt="Destination event planning">
+                </div>
+                <div>
+                    <h2 class="searchable">Destination Events</h2>
+                    <p>Seamless events in exotic locations</p>
+                    <ul>
+                        <li>Venue sourcing worldwide</li>
+                        <li>Travel and accommodation coordination</li>
+                        <li>Local vendor partnerships</li>
+                        <li>Cultural experience integration</li>
+                        <li>Logistics management</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="testimonials animate">
+            <h2>Client Stories</h2>
+            <div class="card-container">
+                <div class="card testimonial">
+                    <div class="card-image">
+                        <img src="images/female2.webp" alt="Happy client">
+                    </div>
+                    <blockquote>
+                        "Event Elegance made our dream wedding a reality! Every detail was perfectly executed."
+                        <cite>- Sarah &amp; James</cite>
+                    </blockquote>
+                </div>
+                <div class="card testimonial">
+                    <div class="card-image">
+                        <img src="images/male.webp" alt="Happy client">
+                    </div>
+                    <blockquote>
+                        "The most professional team we've worked with. Our product launch was a huge success!"
+                        <cite>- Michael Chen</cite>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 Event Elegance. All rights reserved</p>
+        <p>📞 (555) 123-4567 | 📍 123 Premium Event Street, Luxury City</p>
+    </footer>
+
+    <script>
+        // Hamburger Menu
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Search Functionality
+        const searchInput = document.getElementById('searchInput');
+        const searchableElements = document.querySelectorAll('.searchable');
+        const containers = Array.from(searchableElements).map(element => 
+            element.closest('.service-card')
+        );
+        const uniqueContainers = [...new Set(containers)];
+
+        function highlightText(element, text) {
+            const regex = new RegExp(text, 'gi');
+            element.innerHTML = element.textContent.replace(regex, match => 
+                `<span class="highlight">${match}</span>`
+            );
+        }
+
+        function clearHighlights() {
+            document.querySelectorAll('.highlight').forEach(highlight => {
+                highlight.outerHTML = highlight.innerHTML;
+            });
+        }
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.trim().toLowerCase();
+            clearHighlights();
+
+            uniqueContainers.forEach(container => {
+                if (container) container.classList.add('hidden');
+            });
+
+            if (searchTerm === '') {
+                uniqueContainers.forEach(container => {
+                    if (container) container.classList.remove('hidden');
+                });
+                return;
+            }
+
+            searchableElements.forEach(element => {
+                const content = element.textContent.toLowerCase();
+                const container = element.closest('.service-card');
+                if (content.includes(searchTerm)) {
+                    container?.classList.remove('hidden');
+                    highlightText(element, searchTerm);
+                }
+            });
+        });
+
+        // Scroll Animations with Fade In/Out
+             const animationObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                    // Fade In
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                  } else {
+                    // Fade Out
+                    entry.target.style.opacity = 0;
+                    entry.target.style.transform = 'translateY(20px)';
+                  }
+                });
+              }, { 
+                threshold: 0.3,  // Trigger when 30% of the element is visible
+                rootMargin: '0px 0px -100px 0px'  // Adjust for earlier/later triggering
+              });
+  
+              document.querySelectorAll('.animate').forEach(element => {
+                element.style.transition = 'all 0.8s ease';  // Smooth transition
+                element.style.opacity = 0;  // Start hidden
+                element.style.transform = 'translateY(20px)';
+                animationObserver.observe(element);
+              });
+    </script>
+</body>
+</html>
