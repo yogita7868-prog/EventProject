@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Elegance - Premium Event Planning</title>
+
+    <!-- Google Font Import -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Internal CSS Styling -->
+    <style>
+        /* Root Variables */
+        :root {
+            --primary: rgb(41, 33, 100);
+            --accent: #00B894;
+            --background: rgb(225, 220, 220);
+            --text: #2D3436;
+        }
+
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        /* Body Styling */
+        body {
+            background: var(--background);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Header & Navbar */
+        .header {
+            background: var(--primary);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(108, 92, 231, 0.1);
+        }
+
+        /* Headings Styling */
+        h1, h2, h3 {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        /* Accent Text Styling */
+        .accent-text {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* Navbar Layout */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .logo:hover {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            margin: 100px auto 2rem;
+            max-width: 800px;
+            padding: 0 1rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 2rem;
+            border: 2px solid var(--accent);
+            border-radius: 30px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(0, 184, 148, 0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            padding: 0 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Cards for Events */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-image {
+            height: 200px;
+            border-radius: 15px 15px 0 0;
+            overflow: hidden;
+            margin: -2rem -2rem 1rem -2rem;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        /* About Section */
+        .about {
+            display: grid;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        /* Stats Section */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(108, 92, 231, 0.1);
+            border-radius: 15px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        /* Footer Styling */
+        .footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: var(--primary);
+                flex-direction: column;
+                padding: 1rem;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+                font-size: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Class for Hiding Elements */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header and Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="#" class="logo">EventElegance</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="calculator.html">Calculator</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="hamburger">☰</div>
+        </nav>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" class="search-input" placeholder="🔍 Search events, services, or features..." id="searchInput">
+    </div>
+
+    <!-- Main Website Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero animate">
+            <h1 class="searchable">Crafting Unforgettable Experiences</h1>
+            <p class="searchable">Premium Event Planning & Management Services</p>
+        </section>
+        <h1 class="searchable">Past Events Held By Us</h1>
+        <section class="card-container">
+            
+            <!-- Corporate Tech Summit -->
+            <div class="card animate">
+                <div class="card-image">
+                    <img src="images/corporate.jpeg" alt="Tech conference stage">
+                </div>
+                <h3 class="searchable">Global Tech Summit 2024</h3>
+                <p>3-day technology conference with industry leaders</p>
+                <ul>
+                    <li>📍 AV1, 4/64 Burrows Rd, Alexandria NSW 2015, Australia</li>
+                    <li>📅 June 10-12, 2024</li>
+                    <li>👥 2,500+ attendees</li>
+                    <li>💡 45 breakout sessions</li>
+                    <li>🤝 12 exhibition booths</li>
+                </ul>
+            </div>
+        
+            <!-- Charity Gala -->
+            <div class="card animate">
+                <div class="card-image">
+                    <img src="images/gala.jpeg" alt="Charity auction event">
+                </div>
+                <h3 class="searchable">Hope Foundation Gala</h3>
+                <p>Annual black-tie fundraising dinner</p>
+                <ul>
+                    <li>📍 Amora Hotel Jamison Sydney, 1 Jamison Street, Sydney NSW, Australia</li>
+                    <li>📅 November 15, 2023</li>
+                    <li>💰 $1.8M raised</li>
+                    <li>🎗️ 75 corporate sponsors</li>
+                    <li>🎤 Celebrity guest speaker</li>
+                </ul>
+            </div>
+        
+            <!-- Product Launch -->
+            <div class="card animate">
+                <div class="card-image">
+                    <img src="images/eco.jpeg" alt="Product launch event">
+                </div>
+                <h3 class="searchable">EcoPower Product Launch</h3>
+                <p>Global unveiling of sustainable energy solution</p>
+                <ul>
+                    <li>📍 Bells at Killcare Boutique Hotel, Restaurant & Spa, 107 The Scenic Road, Killcare Heights NSW, Australia</li>
+                    <li>📅 March 5, 2024</li>
+                    <li>🌍 28 international media outlets</li>
+                    <li>📈 40% sales increase post-event</li>
+                    <li>🤖 Interactive product demos</li>
+                </ul>
+            </div>
+        
+            <!-- Music Festival -->
+            <div class="card animate">
+                <div class="card-image">
+                    <img src="images/party.jpeg" alt="Music festival stage">
+                </div>
+                <h3 class="searchable">Harmony Music Festival</h3>
+                <p>3-day outdoor music experience</p>
+                <ul>
+                    <li>📍 Pacific Bay Resort, Bay Drive, Coffs Harbour NSW, Australia</li>
+                    <li>📅 July 19-21, 2024</li>
+                    <li>🎵 32 performing artists</li>
+                    <li>🎪 5 themed stages</li>
+                    <li>👥 15,000 daily attendees</li>
+                </ul>
+            </div>
+        
+            <!-- Corporate Retreat -->
+            <div class="card animate">
+                <div class="card-image">
+                    <img src="images/tech.webp" alt="Team building activity">
+                </div>
+                <h3 class="searchable">TechCorp Leadership Retreat</h3>
+                <p>Executive team development program</p>
+                <ul>
+                    <li>📍 Fairmont Resort Blue Mountains by MGallery, 1 Sublime Point Road, Leura NSW, Australia</li>
+                    <li>📅 January 8-11, 2024</li>
+                    <li>🧠 18 workshops</li>
+                    <li>🏔️ 4 adventure activities</li>
+                    <li>👨‍💼 C-level participants</li>
+                </ul>
+            </div>
+        
+            <!-- Sharma Destination Wedding -->
+            <div class="card animate">
+                <div class="card-image">
+                    <img src="images/beachwedding.jpeg" alt="Beach wedding setup">
+                </div>
+                <h3 class="searchable">Sharma Destination Wedding</h3>
+                <p>500-guest beach celebration in Bali</p>
+                <ul>
+                    <li>📍 Pullman Magenta Shores Resort, 1 Magenta Drive, Magenta NSW, Australia</li>
+                    <li>📅 March 15-18, 2024</li>
+                    <li>🌺 Tropical floral arrangements</li>
+                    <li>🎆 Evening fireworks display</li>
+                </ul>
+            </div>
+        
+            
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-container animate">
+            <div class="stat-card">
+                <div class="stat-number">800+</div>
+                <p>Events Organized</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">88%</div>
+                <p>Client Satisfaction</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">60+</div>
+                <p>Years Experience</p>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section class="about animate">
+            <h2 class="searchable">Why Choose Us?</h2>
+            <div class="card">
+                <h3 class="searchable">Premium Service</h3>
+                <p>Dedicated event managers and 24/7 support</p>
+            </div>
+            <div class="card">
+                <h3 class="searchable">Custom Solutions</h3>
+                <p>Tailored packages to match your vision</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Event Elegance. All rights reserved</p>
+        <p>📞 (555) 123-4567 | 📍 123 Premium Event Street, Luxury City</p>
+    </footer>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        // Hamburger Toggle for Mobile Navigation
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Live Search Functionality
+        const searchInput = document.getElementById('searchInput');
+        const searchableElements = document.querySelectorAll('.searchable');
+        const containers = Array.from(searchableElements).map(element => 
+            element.closest('.card, section')
+        );
+        const uniqueContainers = [...new Set(containers)];
+
+        // Highlight matching text
+        function highlightText(element, text) {
+            const regex = new RegExp(text, 'gi');
+            element.innerHTML = element.textContent.replace(regex, match => 
+                `<span class="highlight">${match}</span>`
+            );
+        }
+
+        // Clear all highlights before next search
+        function clearHighlights() {
+            document.querySelectorAll('.highlight').forEach(highlight => {
+                highlight.outerHTML = highlight.innerHTML;
+            });
+        }
+
+        // Handle input changes for search
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.trim().toLowerCase();
+            clearHighlights();
+
+            uniqueContainers.forEach(container => container?.classList.add('hidden'));
+
+            if (searchTerm === '') {
+                uniqueContainers.forEach(container => container?.classList.remove('hidden'));
+                return;
+            }
+
+            searchableElements.forEach(element => {
+                const content = element.textContent.toLowerCase();
+                const container = element.closest('.card, section');
+                if (content.includes(searchTerm)) {
+                    container?.classList.remove('hidden');
+                    highlightText(element, searchTerm);
+                }
+            });
+        });
+
+        // Intersection Observer for Fade-In Animation
+        const animationObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                } else {
+                    entry.target.style.opacity = 0;
+                    entry.target.style.transform = 'translateY(20px)';
+                }
+            });
+        }, {
+            threshold: 0.3,
+            rootMargin: '0px 0px -100px 0px'
+        });
+
+        // Apply animation to all elements with class .animate
+        document.querySelectorAll('.animate').forEach(element => {
+            element.style.transition = 'all 0.8s ease';
+            element.style.opacity = 0;
+            element.style.transform = 'translateY(20px)';
+            animationObserver.observe(element);
+        });
+    </script>
+</body>
+</html>

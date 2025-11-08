@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Calculator - EventElegance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+       
+        :root {
+            --primary: rgb(41, 33, 100);
+            --accent: #00B894;
+            --background: rgb(225, 220, 220);
+            --text: #2D3436;
+        }
+
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        
+        .header {
+            background: var(--primary);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(108,92,231,0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        /* Calculator Styles */
+        .calculator-container {
+            padding: 50px 20px 50px;
+            max-width: 800px; /* Desktop limit */
+            margin: 0 auto;
+            width: 100%; /* Ensures full width on smaller screens */
+        }
+        
+        .calculator-box {
+            width: 100%; /* Fills the container */
+            padding: 2rem;
+            border-radius: 15px;
+            background-color: #ffffff;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .calculator-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin: 1.5rem 0;
+        }
+
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        select:focus, input[type="number"]:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .checkbox-group {
+            margin: 1rem 0;
+        }
+
+        button {
+            background: var(--accent);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: var(--primary);
+            transform: scale(1.05);
+        }
+
+        #result {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(0,184,148,0.1);
+            border-radius: 10px;
+            display: none;
+        }
+
+        .footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+        }
+
+        
+       
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: var(--primary);
+                flex-direction: column;
+                padding: 1rem;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+                font-size: 1.5rem;
+            }
+
+            .calculator-container {
+                margin-top: 5px;
+                padding: 30px 10px;
+                max-width: 100%;
+            }
+        
+            .calculator-box {
+                padding: 1.5rem 1rem;
+            }
+        
+            .form-group label {
+                font-size: 1rem;
+            }
+        
+            select, input[type="number"] {
+                font-size: 1rem;
+            }
+        
+            button {
+                width: 100%;
+                font-size: 1rem;
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <a href="#" class="logo">EventElegance</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="calculator.html">Calculator</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="hamburger">☰</div>
+        </nav>
+    </header>
+
+    <main class="calculator-container">
+        <div class="calculator-box animate">
+            <h2>Event Budget Calculator</h2>
+            <div class="form-group">
+                <label for="eventType">Event Type</label>
+                <select id="eventType">
+                    <option value="wedding">Wedding</option>
+                    <option value="corporate">Corporate Event</option>
+                    <option value="birthday">Birthday Party</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="guests">Number of Guests</label>
+                <input type="number" id="guests" min="10" max="1000" value="50">
+            </div>
+
+            <div class="checkbox-group">
+                <h3>Additional Services</h3>
+                <label><input type="checkbox" name="catering"> Catering ($15/guest)</label>
+                <label><input type="checkbox" name="decoration"> Decoration ($500)</label>
+                <label><input type="checkbox" name="photography"> Photography ($1200)</label>
+            </div>
+
+            <button onclick="calculateBudget()">Calculate Budget</button>
+            <div id="result"></div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 Event Elegance. All rights reserved</p>
+        <p>📞 (555) 123-4567 | 📍 123 Premium Event Street, Luxury City</p>
+    </footer>
+
+    <script>
+        function calculateBudget() {
+            const basePrices = {
+                wedding: 3000,
+                corporate: 5000,
+                birthday: 1500
+            };
+
+            const eventType = document.getElementById('eventType').value;
+            const guests = parseInt(document.getElementById('guests').value) || 0;
+            
+            let total = basePrices[eventType];
+            total += document.querySelector('[name="catering"]').checked ? 15 * guests : 0;
+            total += document.querySelector('[name="decoration"]').checked ? 500 : 0;
+            total += document.querySelector('[name="photography"]').checked ? 1200 : 0;
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `
+                <h3>💰 Estimated Total: $${total.toLocaleString()}</h3>
+                <p>Breakdown:</p>
+                <ul>
+                    <li>Base ${eventType} package: $${basePrices[eventType]}</li>
+                    ${document.querySelector('[name="catering"]').checked ? `<li>Catering: $${15 * guests}</li>` : ''}
+                    ${document.querySelector('[name="decoration"]').checked ? `<li>Decoration: $500</li>` : ''}
+                    ${document.querySelector('[name="photography"]').checked ? `<li>Photography: $1,200</li>` : ''}
+                </ul>
+                <p style="color: var(--primary); margin-top: 1rem;">*Prices are estimates. Contact us for exact pricing.</p>
+            `;
+        }
+
+        // Hamburger Menu
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Scroll Animations with Fade In/Out
+const animationObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Fade In
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = 'translateY(0)';
+      } else {
+        // Fade Out
+        entry.target.style.opacity = 0;
+        entry.target.style.transform = 'translateY(20px)';
+      }
+    });
+  }, { 
+    threshold: 0.3,  // Trigger when 30% of the element is visible
+    rootMargin: '0px 0px -100px 0px'  // Adjust for earlier/later triggering
+  });
+  
+  document.querySelectorAll('.animate').forEach(element => {
+    element.style.transition = 'all 0.8s ease';  // Smooth transition
+    element.style.opacity = 0;  // Start hidden
+    element.style.transform = 'translateY(20px)';
+    animationObserver.observe(element);
+  });
+    </script>
+</body>
+</html>
